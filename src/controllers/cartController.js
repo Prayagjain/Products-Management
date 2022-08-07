@@ -32,8 +32,8 @@ let createCart = async function (req, res) {
         let user = await userModel.findOne({ _id: id })
         if (!user) { return res.status(404).send({ status: false, message: "user with this userId not found" }) }
 
-        let product = await productModel.findOne({ _id: productId })
-        if (!product) { return res.status(404).send({ status: false, message: "product with this productId not found" }) }
+        let product = await productModel.findOne({ _id: productId , isDeleted:false})
+        if (!product) { return res.status(404).send({ status: false, message: "product with this productId not found or deleted" }) }
 
 
 
