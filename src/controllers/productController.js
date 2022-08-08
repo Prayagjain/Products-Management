@@ -70,7 +70,7 @@ let createProduct = async function (req, res) {
             if (isFreeShipping == "false" || isFreeShipping == false) { productDoc.isFreeShipping = false }
             if (isFreeShipping == "true" || isFreeShipping == true) { productDoc.isFreeShipping = true }
         }
-        if ("style" in bodyData) { if (!validateString(isFreeShipping)) { return res.status(400).send({ status: false, message: "please provide something in style" }) }}
+        if ("style" in bodyData) { if (!validateString(style)) { return res.status(400).send({ status: false, message: "please provide something in style" }) }}
 
         if ("installments" in bodyData) {
             if (!validateString(installments)) {bodyData.installments = 0}

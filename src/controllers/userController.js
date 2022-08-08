@@ -112,13 +112,11 @@ let userLogin = async function (req, res) {
 
         let user = await userModel.findOne({ email: email });
         if (!user)
-            return res.status(400).send({
-                status: false,
-                message: "email is not correct",
-            });
+            return res.status(401).send({status: false,message: "email is not correct",});
+
         const passwordDetails = await bcrypt.compare(password, user.password)
         if (!passwordDetails) {
-            return res.status(400).send({ status: false, msg: "password is incorrect pls provide correct password" })
+            return res.status(401).send({ status: false, msg: "password is incorrect pls provide correct password" })
         }
         let token = jwt.sign(
             {
